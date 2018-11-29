@@ -1,0 +1,43 @@
+1)	Select Queries
+1.	Display all departments from department table.
+select department_name from departments;
+2.	Display all employees from employee table.
+select employee_id, first_name, last_name from employees;
+3.	Select the employee in department 30.
+select employee_id,first_name,last_name from employees where department_id=30;
+4.	List the names, numbers and departmentno of all clerks.
+select employee_id,first_name,last_name,phone_number,department_id from employees where job_id like "%_CLERK";
+5.	Find the depart numbers and the name of employee of all dept with Deptno greater or equal to 20.
+select first_name,last_name,department_id from employees where department_id>=20;
+9.	List the name, job and salary of all employees in dept 20 who earn more than 2000.
+select first_name,last_name,job_id,salary from employees where department_id=20 and salary >2000;
+10.	Find all salesmen in dept 30 whose salary is greater than or equal to Rs. 1500.
+select * from employees where department_id=30 AND salary >=1500 AND job_id like "%_MAN";
+11.	Find all the employees whose job is either a president or manager.
+SELECT * FROM EMPLOYEES WHERE JOB_ID LIKE "%_PRES" OR JOB_ID LIKE "%_MGR";
+12.	Find all managers who are not in dept 30.
+SELECT * FROM EMPLOYEES WHERE JOB_ID LIKE "%_MGR" AND DEPARTMENT_ID<>30;
+13.	Find the details of all managers and clerks in dept 10.
+SELECT * FROM EMPLOYEES WHERE JOB_ID LIKE "%_MGR" OR JOB_ID LIKE "%_CLERK" AND DEPARTMENT_ID=10;
+14.	Find the details of all manager (in any dept) and all clerks in dept 10
+SELECT * FROM EMPLOYEES WHERE JOB_ID LIKE "%_MGR" OR (JOB_ID LIKE "%_CLERK" AND DEPARTMENT_ID=10);
+15.	Find the details of all managers in dept 10 and all clerks in dept 20.
+SELECT * FROM EMPLOYEES WHERE (JOB_ID LIKE "%_MGR" AND DEPARTMENT_ID=10) OR (JOB_ID LIKE "%_CLERK" AND DEPARTMENT_ID=20);
+16.	Find all employees who are neither clerks nor manager but whose salary is greater than or equal to Rs. 2000.
+SELECT * FROM EMPLOYEES WHERE (JOB_ID NOT LIKE "%_MGR") AND (JOB_ID NOT LIKE "%_CLERK") AND SALARY>=2000 ;
+17.	Find the employees who earns between Rs. 1200 and Rs.1400.
+SELECT * FROM EMPLOYEES WHERE SALARY BETWEEN 1200 AND 1400;
+
+18.	Find the employees who are clerks, analysts or salesman.
+SELECT * FROM EMPLOYEES WHERE (JOB_ID LIKE "%_MAN") OR (JOB_ID LIKE "%_CLERK") OR (JOB_ID LIKE "%ASST");
+19.	Find the employees who are not clerks, analyst or salesman.
+SELECT * FROM EMPLOYEES WHERE (JOB_ID NOT LIKE "%_MAN") AND (JOB_ID NOT LIKE "%_CLERK") AND (JOB_ID NOT LIKE "%ASST");
+20.	Find the employees who do not receive a commission i.e. commission is NULL.
+select * from employees where commission_pct is null;
+21.	Find the employee whose commission is Rs. 0.
+select * from employees where commission_pct=0;
+22.	Find the different jobs of the employees receiving commission.
+select distinct job_id fROM  employees where commission_pct is NOT NULL;
+
+25.	Find all employees whose total earnings are greater than Rs. 2000.
+SELECT *,salary+(commission_pct*salary) as ttl_erngs FROM EMPLOYEES WHERE SALARY+(COMMISSION_PCT*SALARY) >2000;
